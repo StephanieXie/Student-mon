@@ -125,7 +125,7 @@ public class Player extends Character{
 					}
 
 					int number = 100; // to represent index of food to be consumed
-					while (number>food.size() || number<0) {
+					while (number>=food.size() || number<0) {
 						Scanner reader = new Scanner(System.in);
 						System.out.println("Enter the number of the food you'd like to eat: ");
 						number = reader.nextInt();
@@ -135,12 +135,9 @@ public class Player extends Character{
 					System.out.println("<<<Hit Enter>>>");
 					fill = blank.nextLine();
 
-					// BUG: cannot choose option "Apple" no matter what number it currently is,
-					// IndexOutOfBoundsException
-					// "chocolate bar" and "coffee options" work fine
+					double newHealth = this.getHealth() + (double)(healthFood.get(number));
 					food.remove(number);
 					healthFood.remove(number);
-					double newHealth = this.getHealth() + (double)(healthFood.get(number));
 
 					if (newHealth >= this.getMaxHealth()) {
 						returnHealthToNormal();
